@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<%- include('./partials/head'); %>
+
+<body>
+    <h1>OpenCode Course</h1>
+    <h3>This is the best node.js code ever see!</h3>
+
+   <%- include('./partials/nav') %>
+
+    <div class="blogs">
+       <% if(blogs.length > 0){ %>
+            <% blogs.forEach( blog => { %>
+                <div class="blog">
+                    <h2><%= blog.title %></h2>
+                    <p><%= blog.snippet %></p>
+                </div>
+         <%  })%>
+       <% } else { %>
+          <p>There is no blog.</p>
+      <%  } %>
+    </div>
+  </body>
+  <%- include('./partials/footer') %>
+</html>
