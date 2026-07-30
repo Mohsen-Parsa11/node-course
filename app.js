@@ -23,7 +23,7 @@ app.use(morgan("tiny"));
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({
     title: "New Blog",
-    snippet: "about new blog",
+    snippet: "about new blog 3",
     body: "this is the body of the blog",
   });
 
@@ -43,6 +43,26 @@ app.get("/all-blogs", (req, res) => {
 // get single blog
 app.get("/single-blog", (req, res) => {
   Blog.findById("6a6ae827678bfec03cc6dcca")
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
+
+// delete single blog
+app.get("/d-single-blog", (req, res) => {
+  Blog.findByIdAndDelete("6a6aec9bc75f78475e83882c")
+    .then((result) => {
+      if (result) {
+        res.send(`Document deleted ${result}`);
+      } else {
+        res.send("Document not found");
+      }
+    })
+    .catch((err) => console.log(err));
+});
+
+// delete all blogs
+app.get("/d-all-blogs", (req, res) => {
+  Blog.deleteMany({})
     .then((result) => res.send(result))
     .catch((err) => console.log(err));
 });
