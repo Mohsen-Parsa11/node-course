@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const Blog = require("./models/Blog");
 
 const app = express();
 
@@ -17,6 +18,34 @@ mongoose
 app.use(express.static("public"));
 
 app.use(morgan("tiny"));
+
+// adding blog
+app.get("/add-blog", (req, res) => {
+  const blog = new Blog({
+    title: "New Blog",
+    snippet: "about new blog",
+    body: "this is the body of the blog",
+  });
+
+  blog
+    .save()
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
+
+// get all blogs
+app.get("/all-blogs", (req, res) => {
+  Blog.find()
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
+
+// get single blog
+app.get("/single-blog", (req, res) => {
+  Blog.findById("6a6ae827678bfec03cc6dcca")
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
 
 app.get("/", (req, res) => {
   const blogs = [
