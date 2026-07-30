@@ -22,8 +22,8 @@ app.use(morgan("tiny"));
 // adding blog
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({
-    title: "New Blog",
-    snippet: "about new blog 3",
+    title: "New Blog 4",
+    snippet: "about new blog",
     body: "this is the body of the blog",
   });
 
@@ -68,21 +68,12 @@ app.get("/d-all-blogs", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  const blogs = [
-    {
-      title: "Yoshi finds eggs",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-    {
-      title: "Mario finds stars",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-    {
-      title: "How to defeat bowser",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-  ];
-  res.render("index", { title: "Home", blogs });
+  Blog.find()
+    .sort({ createdAt: -1 })
+    .then((result) => {
+      res.render("index", { title: "All Blogs", blogs: result });
+    })
+    .catch((err) => console.log(err));
 });
 
 app.get("/about", (req, res) => {
