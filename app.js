@@ -12,12 +12,33 @@ const dbURI =
 
 mongoose
   .connect(dbURI)
-  .then(app.listen(3000))
+  .then(() => {
+    console.log("Connected to MongoDB");
+    app.listen(3000, () => {
+      console.log("Server listening on port 3000");
+    });
+  })
   .catch((err) => console.log(err));
 
 app.use(express.static("public"));
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use(morgan("tiny"));
+
+// post method
+app.post("/blogs", (req, res) => {
+  console.log(req.body);
+  const blog = new Blog(req.body);
+
+  blog
+    .save()
+    .then((result) => {
+      console.log(result);
+      res.redirect("/");
+    })
+    .catch((err) => console.log(err));
+});
 
 // adding blog
 app.get("/add-blog", (req, res) => {
