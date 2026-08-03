@@ -6,17 +6,16 @@
 <body>
     <h1>OpenCode Course</h1>
     <h3>This is the best node.js code ever see!</h3>
-
+  
    <%- include('./partials/nav') %>
 
     <div class="blogs">
        <% if(blogs.length > 0){ %>
             <% blogs.forEach( blog => { %>
-                <div class="blog">
+                <a href="/blogs/<%= blog._id %>" class="single_blog">
                     <h2><%= blog.title %></h2>
                     <p><%= blog.snippet %></p>
-                    <p><%= blog.body %></p>
-                </div>
+                </a>
          <%  })%>
        <% } else { %>
           <p>There is no blog.</p>

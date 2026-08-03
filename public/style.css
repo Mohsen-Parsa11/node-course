@@ -44,6 +44,18 @@ a {
   margin-bottom: 20px;
 }
 
+.single_blog {
+  color: black;
+  margin: 40px 0px;
+  border-left: 5px solid #007bff;
+  display: block;
+  padding-left: 10px;
+}
+
+.blogs .single_blog a h2 {
+  color: red !important;
+}
+
 .blogs {
   margin-top: 20px;
 }
@@ -88,4 +100,17 @@ form input {
 
 footer {
   margin-top: 30px;
+}
+
+.details {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 15px;
+}
+
+.details > p {
+  font-size: 18px;
+  color: hsl(from red 50% 40%);
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
