@@ -44,6 +44,12 @@ a {
   margin-bottom: 20px;
 }
 
+.single_blog {
+  color: black;
+  margin: 40px 0px;
+  background-color: aquamarine !important;
+}
+
 .blogs {
   margin-top: 20px;
 }
